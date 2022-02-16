@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     // Ctrl + Shift + Enter : 세미콜론까지 완성
@@ -11,6 +15,8 @@ public class MemberServiceImpl implements MemberService{
     // 지금은 추상화에만 의존하고 있다
     // AppConfig에서 구체화 코드를 의존하게 했기 때문에 OCP와 DIP를 만족하는 코드이다.
 
+                // 마치 ac.getBean(MemberRepository.class)를 넣어주듯이
+    @Autowired  // 이걸 생성자에 붙여주면 MemberRepository 타입에 맞는 빈을 알아서 의존성을 주입해준다.
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
